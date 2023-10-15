@@ -7,12 +7,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapplicationarraylist.databinding.ActivityMainBinding
 import java.util.ArrayList
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    //NEEDED
+//    private lateinit var customAdaptor : CustomAdaptor
+
 //    private var adaptor : TodoListAdaptor = TodoListAdaptor()
     private var count = 0
+    private var todo = ArrayList<TaskProperties>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -20,9 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val recyclerView = binding.TaskCardRv
+//        customAdaptor = CustomAdaptor(todo)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        var todo = ArrayList<TaskProperties>()
+//        recyclerView.adapter = customAdaptor
+
+
 
         binding.addTaskButtonBtn.setOnClickListener {
             var incomeTask =  binding.textInputTi.text
@@ -31,12 +40,6 @@ class MainActivity : AppCompatActivity() {
             count++
             Log.e("TASK LIST ..." , "$todo")
         }
-
-//        val adapter = CustomAdapter(data)
-
-        // Setting the Adapter with the recyclerview
-//        recyclerView.adapter = adapter
-
 
     }
 
