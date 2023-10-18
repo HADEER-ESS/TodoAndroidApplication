@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     //NEEDED
-//    private lateinit var customAdaptor : CustomAdaptor
+    private lateinit var customAdaptor : TodoListAdaptor
 
 //    private var adaptor : TodoListAdaptor = TodoListAdaptor()
     private var count = 0
@@ -26,10 +26,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val recyclerView = binding.TaskCardRv
-//        customAdaptor = CustomAdaptor(todo)
+//        CustomAdaptor(todo)
+        customAdaptor = TodoListAdaptor(todo)    //???
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-//        recyclerView.adapter = customAdaptor
+        recyclerView.adapter = customAdaptor
 
 
 
