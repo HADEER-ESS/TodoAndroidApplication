@@ -3,46 +3,48 @@ package com.example.todoapplicationarraylist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todoapplicationarraylist.databinding.ActivityMainBinding
-import java.util.ArrayList
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todoapplicationarraylist.databinding.ActivityMainBinding
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    //NEEDED
-    private lateinit var customAdaptor : TodoListAdaptor
+    private var count = 2
+    private var todos : ArrayList<TaskProperties> = arrayListOf(TaskProperties(1,"Hello"))
 
-//    private var adaptor : TodoListAdaptor = TodoListAdaptor()
-    private var count = 0
-    private var todo = ArrayList<TaskProperties>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val recyclerView = binding.TaskCardRv
-//        CustomAdaptor(todo)
-        customAdaptor = TodoListAdaptor(todo)    //???
+        val recyclerView : RecyclerView = binding.TaskCardRv
+
+        val adaptor = TodosAdaptor(todos)
+
+        recyclerView.adapter = adaptor
+
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        recyclerView.adapter = customAdaptor
-
-
-
+        
         binding.addTaskButtonBtn.setOnClickListener {
             var incomeTask =  binding.textInputTi.text
             var taskItem = TaskProperties(count , incomeTask.toString())
-            todo.add(taskItem)
+            todos.add(taskItem)
             count++
-            Log.e("TASK LIST ..." , "$todo")
+            Log.e("TASK LIST ..." , "$todos")
         }
 
     }
 
-
 }
+
+//    private fun addTodoItemsTodoList (item : TaskProperties):ArrayList<TaskProperties>{
+//        var listArray = ArrayList<TaskProperties>()
+//        listArray.add(item)
+//        return  listArray
+//    }
+
+//        var todos : ArrayList<TaskProperties> =
+//            arrayListOf(TaskProperties(1,"Hello") , TaskProperties(2,"Hello"))
